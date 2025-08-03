@@ -1,3 +1,25 @@
+/*
+  Script: ddl_bronze.sql
+  Purpose:
+    This script defines and creates the Bronze layer tables used for staging raw data from CRM and ERP sources.
+    These tables act as the initial landing zone for untransformed data before processing and loading into higher layers.
+
+  Description:
+    - Drops existing tables in the 'bronze' schema if they exist to avoid conflicts.
+    - Creates CRM-related staging tables:
+        • crm_cust_info: Customer master data from the CRM system.
+        • crm_prd_info: Product master data from the CRM system.
+        • crm_sales_details: Sales transaction records from the CRM system.
+    - Creates ERP-related staging tables:
+        • erp_cust_az12: Customer demographic data from the ERP system.
+        • erp_loc_a101: Customer location data from the ERP system.
+        • erp_px_cat_g1v2: Product category and maintenance data from the ERP system.
+
+  Notes:
+    - All tables are created under the 'bronze' schema.
+    - Basic data types are used to match the structure of the incoming CSV files.
+*/
+
 DROP TABLE IF EXISTS bronze.crm_cust_info
 CREATE TABLE bronze.crm_cust_info (
 	cst_id INT,
