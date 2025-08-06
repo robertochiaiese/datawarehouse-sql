@@ -1,3 +1,25 @@
+/*
+  Script: load_silver.sql
+  Purpose:
+    This script defines the stored procedure responsible for loading the Silver layer tables.
+    It transforms and loads cleansed data from the Bronze staging tables into the refined Silver layer.
+
+  Description:
+    - Loads data from CRM-related Bronze tables into Silver layer equivalents:
+        • silver.crm_cust_info: Cleansed and deduplicated customer master data.
+        • silver.crm_prd_info: Product master data with enriched category information.
+        • silver.crm_sales_details: Transaction data with validated and adjusted financial fields.
+    - Loads data from ERP-related Bronze tables into Silver layer equivalents:
+        • silver.erp_cust_az12: Standardized customer demographic data.
+        • silver.erp_loc_a101: Normalized customer location and country codes.
+        • silver.erp_px_cat_g1v2: Product category and maintenance information.
+
+  Notes:
+    - Data quality and transformation rules are applied during loading (e.g., deduplication, null handling, and format correction).
+    - Execution times for each step are logged for monitoring purposes.
+    - Error handling is implemented to capture and report failures during the loading process.
+*/
+
 
 CREATE OR ALTER PROCEDURE silver.load_silver AS
 BEGIN
